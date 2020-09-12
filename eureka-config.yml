@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 8083
+# spring的配置
+spring:
+  profiles: dev
+  application:
+    name: springcloud-provider-eureka
+eureka:
+  instance:
+    hostname: eureka8083.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://eureka8084.com:8084/eureka/,http://eureka8085.com:8085/eureka/
+---
+server:
+  port: 8084
+# spring的配置
+spring:
+  profiles: test
+  application:
+    name: springcloud-provider-eureka
+eureka:
+  instance:
+    hostname: eureka8084.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://eureka8083.com:8083/eureka/,http://eureka8085.com:8085/eureka/
